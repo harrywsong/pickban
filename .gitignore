@@ -1,0 +1,16 @@
+# Ignore node_modules
+dev/node_modules/
+production/node_modules/
+
+# Ignore React build output
+dev/dist/
+dev/build/
+
+# Ignore environment files
+dev/.env
+production/.env
+
+# OS or log files
+.DS_Store
+Thumbs.db
+*.log
