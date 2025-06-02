@@ -100,7 +100,7 @@ const SEQUENCES = {
     { action: 'pick-map', team: 'leader2' },   // Pick 4
     { action: 'pick-side',team: 'leader1' },   // Side 4
     { action: 'decider',  team: 'none'    },   // Decider (last map)
-    { action: 'pick-side',team: 'leader1' }    // Decider side pick
+    { action: 'pick-side',team: 'leader2' }    // Decider side pick
   ]  
 };
 
