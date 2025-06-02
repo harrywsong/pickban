@@ -20,15 +20,20 @@ process.on('uncaughtException', (err) => {
 const app = express();
 const server = http.createServer(app);
 
-// ─── 1) CORS + Socket.IO setup ────────────────────────────────────────────────
-// We explicitly bind to 0.0.0.0 so that external clients can connect.
-// The origin must match your front‑end URL on port 5173.
 const io = new Server(server, {
   cors: {
-    origin: 'http://40.233.116.152:5173',
+    origin: '*',  // Allow all for static file serving. Adjust if needed.
     methods: ['GET', 'POST'],
     credentials: true
   }
+});
+
+// Serve static files from 'dist' (your React build)
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// For any route not handled by your API or socket.io, serve the frontend
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 // ─── 2) Define the pool of 7 maps once, so “decider” logic can reference it ─────
