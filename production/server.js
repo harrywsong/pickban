@@ -10,12 +10,12 @@ const server = http.createServer(app);
 // Allow CORS from Vite dev (http://localhost:5173)
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: 'http://40.233.116.152:5173',
     methods: ['GET', 'POST'],
   }
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 // In‑memory store for rooms, keyed by partyCode
 // Each room looks like:

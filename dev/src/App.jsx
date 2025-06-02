@@ -16,7 +16,8 @@ export default function App() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io('http://localhost:3000');
+    const newSocket = io('http://40.233.116.152:5173');
+    // const newSocket = io('http://localhost:3000');
     socketRef.current = newSocket;
     setSocket(newSocket);
     return () => {
