@@ -321,61 +321,66 @@ export default function PickBan() {
         >
           <h3 className="text-xl font-semibold mb-4">기록</h3>
           <div ref={seqContainerRef} className="space-y-2">
-            {chosen.length > 0 ? (
-              chosen.map((item, idx) => {
-                const actorName = item.by === 'leader1' ? leader1Name : leader2Name;
-                let textColor = 'text-white';
-                let desc = '';
+          {chosen.length > 0 ? (
+            chosen.map((item, idx) => {
+              const actorName = item.by === 'leader1' ? leader1Name
+                              : item.by === 'leader2' ? leader2Name
+                              : '';
+              let textColor = 'text-white';
+              let desc = '';
 
-                if (item.type === 'ban') {
-                  desc = `BANNED ${item.name}`;
-                  textColor = 'text-red-500';
-                }
-                else if (item.type === 'pick-map') {
-                  desc = `PICKED ${item.name}`;
-                  textColor = 'text-green-500';
-                }
-                else if (item.type === 'pick-side') {
-                  // Find the map that this side-pick refers to:
-                  // Look at the previous entry in chosen[] (should be either a pick-map or decider)
-                  const prev = chosen[idx - 1];
-                  const mapForSide = prev ? prev.name : '…';
-                  desc = `PICKED ${item.name} on ${mapForSide}`;
-                  if (item.name === 'ATTACK') textColor = 'text-orange-500';
-                  else if (item.name === 'DEFENSE') textColor = 'text-blue-500';
-                }
-                else if (item.type === 'decider') {
-                  desc = `DECIDER ${item.name}`;
-                  textColor = 'text-yellow-300';
-                }
+              if (item.type === 'ban') {
+                desc = `BANNED ${item.name}`;
+                textColor = 'text-red-500';
+              }
+              else if (item.type === 'pick-map') {
+                desc = `PICKED ${item.name}`;
+                textColor = 'text-green-500';
+              }
+              else if (item.type === 'pick-side') {
+                // Find the map that this side-pick refers to:
+                const prev = chosen[idx - 1];
+                const mapForSide = prev ? prev.name : '…';
+                desc = `PICKED ${item.name} on ${mapForSide}`;
+                if (item.name === 'ATTACK') textColor = 'text-orange-500';
+                else if (item.name === 'DEFENSE') textColor = 'text-blue-500';
+              }
+              else if (item.type === 'decider') {
+                desc = `DECIDER ${item.name}`;
+                textColor = 'text-yellow-300';
+              }
 
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: 0.2 + idx * 0.05 }}
-                    className="flex items-center space-x-2"
-                  >
+              // Special: Do NOT show actorName for decider!
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.2 + idx * 0.05 }}
+                  className="flex items-center space-x-2"
+                >
+                  {item.type !== 'decider' && (
                     <span className="font-semibold text-blue-200">
                       {actorName || '…'}:
                     </span>
-                    <span className={`${textColor} font-medium`}>
-                      {desc}
-                    </span>
-                  </motion.div>
-                );
-              })
-            ) : (
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-                className="italic text-gray-400"
-              >
-                기록이 없습니다.
-              </motion.p>
-            )}
+                  )}
+                  <span className={`${textColor} font-medium`}>
+                    {desc}
+                  </span>
+                </motion.div>
+              );
+            })
+          ) : (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="italic text-gray-400"
+            >
+              기록이 없습니다.
+            </motion.p>
+          )}
+
           </div>
         </motion.div>
       </div>
