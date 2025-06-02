@@ -300,29 +300,41 @@ io.on('connection', (socket) => {
   });
 
   // ─── 7.5) select-side ──────────────────────────────────────────────────────────
-  socket.on('select-side', (data) => {
-    try {
-      const { partyCode, side, by } = data;
-      const room = rooms[partyCode];
-      if (!room || !room.started) return;
+    socket.on('select-side', (data) => {
+      try {
+        const { partyCode, side, by } = data;
+        const room = rooms[partyCode];
+        if (!room || !room.started) return;
 
-      const step = room.sequence[room.currentStep];
-      if (!step) return;
+        const step = room.sequence[room.currentStep];
+        if (!step) return;
 
-      // Only allow “pick-side” by the correct team
-      if (step.action !== 'pick-side' || step.team !== by) {
-        return;
+        // Only allow “pick-side” by the correct team
+        if (step.action !== 'pick-side' || step.team !== by) {
+          return;
+        }
+
+        room.chosen.push({ name: side, type: 'pick-side', by });
+        room.currentStep += 1;
+
+        // NEW: Check for decider as the next step!
+        const nextStep = room.sequence[room.currentStep];
+        if (nextStep && nextStep.action === 'decider') {
+          const chosenNames = new Set(room.chosen.map((c) => c.name));
+          const deciderMap = ALL_MAPS.find((m) => !chosenNames.has(m));
+          if (deciderMap) {
+            room.chosen.push({ name: deciderMap, type: 'decider', by: 'none' });
+          }
+          room.currentStep += 1;
+        }
+
+        io.to(partyCode).emit('room-updated', room);
+      } catch (err) {
+        console.error('❌ Error in select-side:', err);
+        socket.emit('error', 'Server error in select-side.');
       }
+    });
 
-      room.chosen.push({ name: side, type: 'pick-side', by });
-      room.currentStep += 1;
-
-      io.to(partyCode).emit('room-updated', room);
-    } catch (err) {
-      console.error('❌ Error in select-side:', err);
-      socket.emit('error', 'Server error in select-side.');
-    }
-  });
 
   // ─── 7.6) disconnect ───────────────────────────────────────────────────────────
   socket.on('disconnect', () => {
