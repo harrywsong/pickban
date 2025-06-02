@@ -89,19 +89,19 @@ const SEQUENCES = {
     { action: 'pick-side',team: 'leader1' }
   ],
   Bo5: [
-    { action: 'ban',      team: 'leader1' },
-    { action: 'ban',      team: 'leader2' },
-    { action: 'pick-map', team: 'leader1' },
-    { action: 'pick-side',team: 'leader2' },
-    { action: 'pick-map', team: 'leader2' },
-    { action: 'pick-side',team: 'leader1' },
-    { action: 'pick-map', team: 'leader1' },
-    { action: 'pick-side',team: 'leader2' },
-    { action: 'pick-map', team: 'leader2' },
-    { action: 'pick-side',team: 'leader1' },
-    { action: 'decider',  team: 'none'    },
-    { action: 'pick-side',team: 'leader1' } // or alternate
-  ]
+    { action: 'ban',      team: 'leader1' },   // Ban 1
+    { action: 'ban',      team: 'leader2' },   // Ban 2
+    { action: 'pick-map', team: 'leader1' },   // Pick 1
+    { action: 'pick-side',team: 'leader2' },   // Side 1
+    { action: 'pick-map', team: 'leader2' },   // Pick 2
+    { action: 'pick-side',team: 'leader1' },   // Side 2
+    { action: 'pick-map', team: 'leader1' },   // Pick 3
+    { action: 'pick-side',team: 'leader2' },   // Side 3
+    { action: 'pick-map', team: 'leader2' },   // Pick 4
+    { action: 'pick-side',team: 'leader1' },   // Side 4
+    { action: 'decider',  team: 'none'    },   // Decider (last map)
+    { action: 'pick-side',team: 'leader1' }    // Decider side pick
+  ]  
 };
 
 
