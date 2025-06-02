@@ -98,9 +98,9 @@ const SEQUENCES = {
     { action: 'pick-map', team: 'leader1' },
     { action: 'pick-side',team: 'leader2' },
     { action: 'pick-map', team: 'leader2' },
-    { action: 'pick-side',team: 'leader1' },   // <---- all side picks FIRST
-    { action: 'decider',  team: 'none'    }    // <---- decider is revealed LAST
-  ]  
+    { action: 'decider',  team: 'none'    },   // <--- decider revealed!
+    { action: 'pick-side',team: 'leader1' }    // <--- side pick for decider
+  ]
 };
 
 
