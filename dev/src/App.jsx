@@ -1,6 +1,7 @@
 // src/App.jsx
 import React, { createContext, useEffect, useRef, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+// Import socket.io-client as before
 import { io } from 'socket.io-client';
 
 import Home    from './pages/Home';
@@ -16,10 +17,11 @@ export default function App() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io('http://40.233.116.152:5173');
-    // const newSocket = io('http://localhost:3000');
+    // ◀︎ Use a _relative_ connection (no IP/port) so Vite can proxy it.
+    const newSocket = io();
     socketRef.current = newSocket;
     setSocket(newSocket);
+
     return () => {
       newSocket.disconnect();
     };
@@ -28,7 +30,7 @@ export default function App() {
   return (
     <SocketContext.Provider value={socket}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/"        element={<Home />} />
         <Route path="/host"    element={<Host />} />
         <Route path="/join"    element={<Join />} />
         <Route path="/lobby"   element={<Lobby />} />
