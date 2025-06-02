@@ -66,8 +66,16 @@ function buildBo1Sequence() {
 
 // ─── 4) Pre‑defined Bo3 and Bo5 sequences (includes side picks) ───────────────
 const SEQUENCES = {
-  Bo1: buildBo1Sequence(),
-
+  Bo1: [
+    { action: 'ban',      team: 'leader1' },
+    { action: 'ban',      team: 'leader2' },
+    { action: 'ban',      team: 'leader1' },
+    { action: 'ban',      team: 'leader2' },
+    { action: 'ban',      team: 'leader1' },
+    { action: 'ban',      team: 'leader2' },
+    { action: 'decider',  team: 'none'    },
+    { action: 'pick-side',team: 'leader1' }
+  ],
   Bo3: [
     { action: 'ban',      team: 'leader1' },
     { action: 'ban',      team: 'leader2' },
@@ -80,7 +88,6 @@ const SEQUENCES = {
     { action: 'decider',  team: 'none'   },
     { action: 'pick-side',team: 'leader1' }
   ],
-
   Bo5: [
     { action: 'ban',      team: 'leader1' },
     { action: 'ban',      team: 'leader2' },
@@ -88,16 +95,15 @@ const SEQUENCES = {
     { action: 'pick-side',team: 'leader2' },
     { action: 'pick-map', team: 'leader2' },
     { action: 'pick-side',team: 'leader1' },
-    { action: 'ban',      team: 'leader2' },
-    { action: 'ban',      team: 'leader1' },
     { action: 'pick-map', team: 'leader1' },
     { action: 'pick-side',team: 'leader2' },
-    { action: 'ban',      team: 'leader2' },
-    { action: 'ban',      team: 'leader1' },
-    { action: 'decider',  team: 'none'   },
-    { action: 'pick-side',team: 'leader1' }
+    { action: 'pick-map', team: 'leader2' },
+    { action: 'pick-side',team: 'leader1' },
+    { action: 'decider',  team: 'none'    },
+    { action: 'pick-side',team: 'leader1' } // or alternate
   ]
 };
+
 
 // ─── 5) In‑memory store for rooms, keyed by partyCode ──────────────────────────
 const rooms = {};
