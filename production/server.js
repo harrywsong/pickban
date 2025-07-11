@@ -38,12 +38,12 @@ app.get('*', (req, res) => {
 
 // ─── 2) Define the pool of 7 maps once, so “decider” logic can reference it ─────
 const ALL_MAPS = [
-  '로터스',
+  '어센트',
+  '바인드',
+  '코로드',
   '헤이븐',
   '아이스박스',
-  '어센트',
-  '펄',
-  '스플릿',
+  '로터스',
   '선셋'
 ];
 
