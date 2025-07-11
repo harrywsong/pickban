@@ -4,21 +4,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { SocketContext } from '../App';
 import { motion, AnimatePresence } from 'framer-motion';
 
-/**
- * Map labels (Korean) mapped to filenames under public/assets/maps/
- * We include only these 7 maps:
- *   로터스.png, 헤이븐.png, 아이스박스.png, 어센트.png,
- *   펄.png, 스플릿.png, 선셋.png
- * (바인드 and 어비스 have been removed from the pool.)
- */
 const mapData = [
-  { key: '로터스',     file: '로터스.png'   },
-  { key: '헤이븐',     file: '헤이븐.png'   },
+  { key: '어센트',   file: '어센트.png' },
+  { key: '바인드',   file: '바인드.png' },
+  { key: '코로드',   file: '코로드.png' },
+  { key: '헤이븐',   file: '헤이븐.png' },
   { key: '아이스박스', file: '아이스박스.png' },
-  { key: '어센트',     file: '어센트.png'  },
-  { key: '펄',         file: '펄.png'   },
-  { key: '스플릿',     file: '스플릿.png'   },
-  { key: '선셋',       file: '선셋.png'  },
+  { key: '로터스',   file: '로터스.png' },
+  { key: '선셋',     file: '선셋.png' },
 ];
 
 export default function PickBan() {

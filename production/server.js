@@ -38,13 +38,13 @@ app.get('*', (req, res) => {
 
 // ─── 2) Define the pool of 7 maps once, so “decider” logic can reference it ─────
 const ALL_MAPS = [
-  { key: '어센트',   file: '어센트.png' },
-  { key: '바인드',   file: '바인드.png' },
-  { key: '코로드',   file: '코로드.png' },
-  { key: '헤이븐',   file: '헤이븐.png' },
-  { key: '아이스박스', file: '아이스박스.png' },
-  { key: '로터스',   file: '로터스.png' },
-  { key: '선셋',     file: '선셋.png' },
+  '어센트',
+  '바인드',
+  '코로드',
+  '헤이븐',
+  '아이스박스',
+  '로터스',
+  '선셋'
 ];
 
 // ─── 3) Build a Bo1 sequence over those 7 maps ────────────────────────────────
