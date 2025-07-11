@@ -207,10 +207,10 @@ export default function PickBan() {
         <div className="space-y-1">
           <h2 className="text-2xl font-bold">로비 코드: {partyCode}</h2>
           <p className="text-sm text-gray-300">
-            <span className="font-semibold text-white">1팀팀:</span> {leader1Name || '—'}{' '}
+            <span className="font-semibold text-white">1팀:</span> {leader1Name || '—'}{' '}
           </p>
           <p className="text-sm text-gray-300">
-            <span className="font-semibold text-white">2팀팀:</span> {leader2Name || '—'}
+            <span className="font-semibold text-white">2팀:</span> {leader2Name || '—'}
           </p>
           <p className="text-sm text-gray-300">
             <span className="font-semibold text-white">형식:</span> {format}
